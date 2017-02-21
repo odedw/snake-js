@@ -11,6 +11,12 @@ module.exports = {
         "ignoreComments": false
       }],
       "strict": 0,
-      "linebreak-style": ['error', 'unix', "windows"]
+      "linebreak-style": 0,
+      "no-plusplus": 0,
+      "no-loop-func": 0,
+      "no-param-reassign": 0,
+    },
+    "env": {
+        "browser": true
     }
 };
