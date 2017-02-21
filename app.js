@@ -1,5 +1,7 @@
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
+const food = document.getElementById('food');
+const snakeSquare = document.getElementById('snake-square');
 
 // constants
 const SQUARE_SIZE = 10;
@@ -7,6 +9,8 @@ const SNAKE_LENGTH = 4;
 const NUMBER_OF_SQUARES = 30;
 const WIDTH = 350;
 const HEIGHT = 350;
+const BACKGROUND_COLOR = '#adc127';
+const SNAKE_COLOR = '#5f5a0d';
 
 // input
 let direction = 'left';
@@ -84,20 +88,16 @@ function update(state) {
   state.snake.unshift({ x: newX, y: newY });
 }
 
-function drawRect(fillStyle, strokeStyle, x, y, w, h) {
-  ctx.fillStyle = fillStyle;
-  ctx.fillRect(x, y, w, h);
-  ctx.strokeStyle = strokeStyle;
-  ctx.strokeRect(x, y, w, h);
-}
-
 function render(state) {
-  drawRect('lightgrey', 'black', 0, 0, WIDTH, HEIGHT);
-  state.snake.forEach(square =>
-    drawRect('green', 'darkgreen', square.x * SQUARE_SIZE, square.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE));
-  drawRect('red', 'yellow', state.food.x * SQUARE_SIZE, state.food.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+  ctx.fillStyle = BACKGROUND_COLOR;
+  ctx.fillRect(0, 0, WIDTH, HEIGHT);
+  ctx.strokeStyle = SNAKE_COLOR;
+  ctx.strokeRect(0, 0, WIDTH, HEIGHT);
 
-  ctx.fillStyle = 'blue';
+  state.snake.forEach(square => ctx.drawImage(snakeSquare, square.x * SQUARE_SIZE, square.y * SQUARE_SIZE));
+  ctx.drawImage(food, state.food.x * SQUARE_SIZE, state.food.y * SQUARE_SIZE);
+
+  ctx.fillStyle = SNAKE_COLOR;
   ctx.fillText(`Score: ${state.score}`, 145, HEIGHT - 5);
 }
 
