@@ -1,0 +1,13 @@
+html, body {
+    width: 100%;
+    overflow: hidden;
+}
+
+#container 
+{
+    width: 350px;
+    height: 350px;
+    padding: 0;
+    margin: auto;
+    border: 1px solid black;
+}       
